@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import EvidenceChecklist from './components/EvidenceChecklist';
+import GhostList from './components/GhostList';
+import { EvidenceStateMap, EvidenceState } from './types/ghost';
 
 function App() {
+  const [evidenceState, setEvidenceState] = useState<EvidenceStateMap>({});
+
+  const handleEvidenceChange = (evidenceId: string, state: EvidenceState) => {
+    setEvidenceState(prev => ({
+      ...prev,
+      [evidenceId]: state
+    }));
+  };
+
+  const handleReset = () => {
+    setEvidenceState({});
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>👻 Ghost Note</h1>
+        <p>파스모포비아 유령 일지</p>
       </header>
+      <main className="App-main">
+        <EvidenceChecklist 
+          evidenceState={evidenceState}
+          onEvidenceChange={handleEvidenceChange}
+          onReset={handleReset}
+        />
+        <GhostList evidenceState={evidenceState} />
+      </main>
     </div>
   );
 }

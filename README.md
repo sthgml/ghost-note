@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+# 👻 Ghost Note
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+파스모포비아(Phasmophobia) 유령 일지 웹 애플리케이션입니다.
 
-## Available Scripts
+## 🎯 기능
 
-In the project directory, you can run:
+- **증거 체크리스트**: 7가지 증거를 체크하여 유령을 판별
+- **유령 목록**: 모든 유령의 정보와 증거 조합 표시
+- **실시간 필터링**: 선택한 증거에 따라 가능한 유령만 표시
+- **소거법**: 선택한 증거에 맞지 않는 유령은 자동으로 제거 표시
+- **리셋 기능**: 모든 증거를 초기화하여 새 게임 시작
 
-### `npm start`
+## 🕵️ 증거 종류
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. **EMF 5단계** - EMF 측정기로 5단계 신호를 감지
+2. **주파수 측정기** - 유령과 음성으로 소통 가능
+3. **UV 자외선** - 손자국, 발자국, 지문을 자외선으로 확인
+4. **고스트 오브** - 비디오 카메라로만 보이는 구체형 유령
+5. **고스트 라이팅** - 유령이 수첩에 글을 씀
+6. **서늘함** - 온도계로 0°C 이하 온도 감지
+7. **도트 프로젝터** - 도트 프로젝터로 유령의 실루엣 확인
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🎮 사용법
 
-### `npm test`
+1. 게임에서 발견한 증거를 체크리스트에서 선택
+2. 선택한 증거에 따라 가능한 유령이 자동으로 필터링됨
+3. 제거된 유령은 투명도로 표시되며 "제거됨" 배지가 표시됨
+4. 가능한 유령은 녹색 테두리와 "가능" 배지로 표시됨
+5. 새 게임을 시작하려면 "리셋" 버튼을 클릭
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 시작하기
 
-### `npm run build`
+### 필수 조건
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js 14.0.0 이상
+- npm 또는 yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 설치
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# 의존성 설치
+npm install
 
-### `npm run eject`
+# 개발 서버 시작
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 앱을 확인하세요.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 빌드
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# 프로덕션용 빌드
+npm run build
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🛠️ 기술 스택
 
-## Learn More
+- **React 18** - 사용자 인터페이스
+- **TypeScript** - 타입 안전성
+- **CSS3** - 스타일링
+- **HTML5** - 마크업
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📱 반응형 디자인
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 데스크톱, 태블릿, 모바일 모든 기기에서 최적화
+- 그리드 레이아웃으로 화면 크기에 따라 자동 조정
+- 터치 친화적인 인터페이스
+
+## 🎨 디자인 특징
+
+- 파스모포비아의 어두운 테마를 반영한 다크 모드
+- 유령과 증거에 맞는 색상 코딩
+- 부드러운 애니메이션과 호버 효과
+- 직관적인 사용자 인터페이스
+
+## 📄 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 배포됩니다.
+
+## 🤝 기여
+
+버그 리포트나 기능 제안은 언제든 환영합니다!

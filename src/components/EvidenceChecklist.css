@@ -1,0 +1,188 @@
+.evidence-checklist {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.evidence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.evidence-checklist h2 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.evidence-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.evidence-counts {
+  display: flex;
+  gap: 12px;
+}
+
+.count-item {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.count-item.confirmed {
+  background: #4CAF50;
+  color: white;
+}
+
+.count-item.ruled-out {
+  background: #ff4444;
+  color: white;
+}
+
+.reset-button {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-button:hover {
+  background: #ff5252;
+  transform: translateY(-1px);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.evidence-item {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.evidence-item:hover {
+  background: #333333;
+  transform: translateY(-2px);
+}
+
+.evidence-info {
+  flex: 1;
+}
+
+.evidence-name {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.evidence-description {
+  color: #cccccc;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.evidence-state-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evidence-state-button.unknown {
+  background: #3a3a3a;
+  color: #cccccc;
+  border: 2px solid #555;
+}
+
+.evidence-state-button.unknown:hover {
+  background: #4a4a4a;
+  border-color: #666;
+}
+
+.evidence-state-button.confirmed {
+  background: #4CAF50;
+  color: white;
+  border: 2px solid #4CAF50;
+}
+
+.evidence-state-button.confirmed:hover {
+  background: #45a049;
+  border-color: #45a049;
+}
+
+.evidence-state-button.ruled-out {
+  background: #ff4444;
+  color: white;
+  border: 2px solid #ff4444;
+}
+
+.evidence-state-button.ruled-out:hover {
+  background: #ff3333;
+  border-color: #ff3333;
+}
+
+@media (max-width: 768px) {
+  .evidence-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .evidence-controls {
+    justify-content: space-between;
+  }
+  
+  .evidence-counts {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .evidence-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .evidence-state-button {
+    align-self: center;
+  }
+} 
