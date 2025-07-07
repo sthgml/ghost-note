@@ -1,0 +1,157 @@
+.ghost-detail-panel {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  color: #fff;
+  min-width: 300px;
+}
+
+.ghost-detail-panel.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state {
+  text-align: center;
+  color: #888;
+}
+
+.empty-state h3 {
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.ghost-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #333;
+}
+
+.ghost-header h2 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.ghost-description {
+  margin: 0;
+  color: #ccc;
+  font-style: italic;
+}
+
+.ghost-info-section {
+  margin-bottom: 24px;
+}
+
+.ghost-info-section h3 {
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+.info-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.info-label {
+  font-weight: 500;
+  color: #ccc;
+}
+
+.info-value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.evidence-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.evidence-tag {
+  background: #2d5a2d;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #4a7c4a;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid #2a2a2a;
+  color: #ccc;
+  position: relative;
+  padding-left: 16px;
+}
+
+.info-list li:before {
+  content: "•";
+  color: #4a7c4a;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.info-list li:last-child {
+  border-bottom: none;
+}
+
+/* 스크롤바 스타일 */
+.ghost-detail-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ghost-detail-panel::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.ghost-detail-panel::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.ghost-detail-panel::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .ghost-detail-panel {
+    min-width: auto;
+    margin-top: 20px;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .evidence-list {
+    justify-content: flex-start;
+  }
+} 

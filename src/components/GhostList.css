@@ -1,16 +1,15 @@
 .ghost-list {
   background: #1a1a1a;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  color: #fff;
 }
 
 .ghost-list h2 {
-  color: #ffffff;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
+  color: #fff;
   font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
 }
 
 .ghost-summary {
@@ -53,34 +52,54 @@
   color: white;
 }
 
-.ghost-grid {
+.ghosts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
-.ghost-item {
+.ghost-card {
   background: #2a2a2a;
+  border: 2px solid #444;
   border-radius: 8px;
   padding: 16px;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-.ghost-item:hover {
+.ghost-card:hover {
+  border-color: #666;
+  background: #333;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.ghost-item.eliminated {
+.ghost-card.selected {
+  border-color: #4a7c4a;
+  background: #2d4a2d;
+  box-shadow: 0 0 0 2px #4a7c4a;
+}
+
+.ghost-card.selected:hover {
+  border-color: #5a8c5a;
+  background: #3d5a3d;
+}
+
+.ghost-card.ruled-out {
   opacity: 0.4;
-  background: #1f1f1f;
-  border-color: #ff4444;
+  filter: grayscale(1);
 }
 
-.ghost-item.possible {
-  border-color: #4CAF50;
-  background: #2d2d2d;
+.ghost-card.ruled-out:hover {
+  opacity: 0.6;
+  filter: grayscale(0.8);
+}
+
+.ghost-card h3 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 1.2rem;
 }
 
 .ghost-header {
@@ -116,9 +135,9 @@
 }
 
 .ghost-description {
-  color: #cccccc;
-  font-size: 0.875rem;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0;
+  color: #ccc;
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
@@ -141,33 +160,46 @@
 }
 
 .evidence-tag {
-  background: #3a3a3a;
-  color: #ffffff;
-  padding: 4px 8px;
+  background: #2d5a2d;
+  color: #fff;
+  padding: 3px 8px;
   border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid #555;
+  border: 1px solid #4a7c4a;
 }
 
-.ghost-item.eliminated .evidence-tag {
-  background: #2a2a2a;
-  color: #888;
-  border-color: #444;
+/* 선택된 유령 카드의 증거 태그 스타일 */
+.ghost-card.selected .evidence-tag {
+  background: #4a7c4a;
+  border-color: #5a8c5a;
 }
 
-.ghost-item.possible .evidence-tag {
-  background: #3d3d3d;
-  border-color: #4CAF50;
-}
-
+/* 반응형 디자인 */
 @media (max-width: 768px) {
   .ghost-summary {
     flex-direction: column;
     gap: 16px;
   }
   
-  .ghost-grid {
+  .ghosts-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .ghost-card {
+    padding: 12px;
+  }
+  
+  .ghost-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .evidence-tags {
+    gap: 4px;
+  }
+  
+  .evidence-tag {
+    font-size: 0.75rem;
+    padding: 2px 6px;
   }
 } 

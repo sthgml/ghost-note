@@ -1,23 +1,20 @@
 import { Ghost, EvidenceStateMap, EvidenceName } from '../types/ghost';
-import { GHOSTS } from '../data/ghosts';
 
-export const filterPossibleGhosts = (evidenceState: EvidenceStateMap): Ghost[] => {
+export const isPossibleGhosts = (ghost: Ghost, evidenceState: EvidenceStateMap): boolean => {
   const confirmedEvidences = Object.keys(evidenceState).filter(key => evidenceState[key] === 'confirmed');
   const ruledOutEvidences = Object.keys(evidenceState).filter(key => evidenceState[key] === 'ruled-out');
 
-  return GHOSTS.filter(ghost => {
-    // 확인된 증거가 유령의 증거에 모두 포함되어야 함
-    const hasAllConfirmedEvidences = confirmedEvidences.every(evidence => 
-      ghost.evidences.includes(evidence as EvidenceName)
-    );
+  // 확인된 증거가 유령의 증거에 모두 포함되어야 함
+  const hasAllConfirmedEvidences = confirmedEvidences.every(evidence => 
+    ghost.evidences.includes(evidence as EvidenceName)
+  );
 
-    // 제외된 증거가 유령의 증거에 포함되지 않아야 함
-    const hasNoRuledOutEvidences = ruledOutEvidences.every(evidence => 
-      !ghost.evidences.includes(evidence as EvidenceName)
-    );
+  // 제외된 증거가 유령의 증거에 포함되지 않아야 함
+  const hasNoRuledOutEvidences = ruledOutEvidences.every(evidence => 
+    !ghost.evidences.includes(evidence as EvidenceName)
+  );
 
-    return hasAllConfirmedEvidences && hasNoRuledOutEvidences;
-  });
+  return hasAllConfirmedEvidences && hasNoRuledOutEvidences;
 };
 
 export const isGhostEliminated = (ghost: Ghost, evidenceState: EvidenceStateMap): boolean => {

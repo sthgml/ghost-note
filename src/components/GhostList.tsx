@@ -1,73 +1,67 @@
 import React from 'react';
-import { EvidenceStateMap } from '../types/ghost';
-import { GHOSTS } from '../data/ghosts';
-import { isGhostEliminated, filterPossibleGhosts } from '../utils/ghostLogic';
+import { Ghost } from '../types/ghost';
 import './GhostList.css';
+import { isPossibleGhosts } from '../utils/ghostLogic';
 
 interface GhostListProps {
-  evidenceState: EvidenceStateMap;
+  ghosts: Ghost[];
+  evidenceState: { [key: string]: 'confirmed' | 'ruled-out' | 'unknown' };
+  selectedGhost: Ghost | null;
+  onGhostSelect: (ghost: Ghost | null) => void;
 }
 
-const GhostList: React.FC<GhostListProps> = ({ evidenceState }) => {
-  const possibleGhosts = filterPossibleGhosts(evidenceState);
-  const confirmedEvidences = Object.keys(evidenceState).filter(key => evidenceState[key] === 'confirmed');
-  const ruledOutEvidences = Object.keys(evidenceState).filter(key => evidenceState[key] === 'ruled-out');
+const GhostList: React.FC<GhostListProps> = ({ 
+  ghosts, 
+  evidenceState, 
+  selectedGhost,
+  onGhostSelect 
+}) => {
+  const getEvidenceNames = (evidenceIds: string[]) => {
+    const evidenceNames: { [key: string]: string } = {
+      'emf5': 'EMF 5단계',
+      'spiritBox': '주파수 측정기',
+      'uv': 'UV 자외선',
+      'ghostOrb': '고스트 오브',
+      'ghostWriting': '고스트 라이팅',
+      'freezing': '서늘함',
+      'dots': '도트 프로젝터'
+    };
+    return evidenceIds.map(id => evidenceNames[id] || id);
+  };
+
+  const handleGhostClick = (ghost: Ghost) => {
+    if (selectedGhost?.id === ghost.id) {
+      onGhostSelect(null); // 같은 유령을 다시 클릭하면 선택 해제
+    } else {
+      onGhostSelect(ghost);
+    }
+  };
 
   return (
     <div className="ghost-list">
-      <h2>유령 목록</h2>
-      
-      {(confirmedEvidences.length > 0 || ruledOutEvidences.length > 0) && (
-        <div className="ghost-summary">
-          <div className="summary-item">
-            <span className="summary-label">가능한 유령:</span>
-            <span className="summary-value possible">{possibleGhosts.length}개</span>
-          </div>
-          <div className="summary-item">
-            <span className="summary-label">제거된 유령:</span>
-            <span className="summary-value eliminated">{GHOSTS.length - possibleGhosts.length}개</span>
-          </div>
-        </div>
-      )}
-
-      <div className="ghost-grid">
-        {GHOSTS.map((ghost) => {
-          const eliminated = isGhostEliminated(ghost, evidenceState);
-          const isPossible = possibleGhosts.some(g => g.id === ghost.id);
+      <h2>유령 목록 ({ghosts.length})</h2>
+      <div className="ghosts-grid">
+        {ghosts.map((ghost) => {
+          const isSelected = selectedGhost?.id === ghost.id;
+          const isRuledOut = ghost.evidences.some(evidence => 
+            evidenceState[evidence] === 'ruled-out'
+          );
+          const isPossible = isPossibleGhosts(ghost, evidenceState);
           
           return (
-            <div 
-              key={ghost.id} 
-              className={`ghost-item ${eliminated ? 'eliminated' : ''} ${isPossible ? 'possible' : ''}`}
+            <div
+              key={ghost.id}
+              className={`ghost-card ${isSelected ? 'selected' : ''} ${isRuledOut || !isPossible ? 'ruled-out' : ''} `}
+              onClick={() => handleGhostClick(ghost)}
             >
-              <div className="ghost-header">
-                <h3 className="ghost-name">{ghost.name}</h3>
-                {eliminated && <span className="eliminated-badge">제거됨</span>}
-                {isPossible && !eliminated && <span className="possible-badge">가능</span>}
-              </div>
-              {ghost.description && (
-                <p className="ghost-description">{ghost.description}</p>
-              )}
-              <div className="ghost-evidences">
-                <span className="evidence-label">증거:</span>
-                <div className="evidence-tags">
-                  {ghost.evidences.map((evidenceId) => {
-                    const evidenceNames: { [key: string]: string } = {
-                      'emf5': 'EMF 5단계',
-                      'spiritBox': '주파수 측정기',
-                      'uv': 'UV 자외선',
-                      'ghostOrb': '고스트 오브',
-                      'ghostWriting': '고스트 라이팅',
-                      'freezing': '서늘함',
-                      'dots': '도트 프로젝터'
-                    };
-                    return (
-                      <span key={evidenceId} className="evidence-tag">
-                        {evidenceNames[evidenceId]}
-                      </span>
-                    );
-                  })}
-                </div>
+              <h3>{ghost.name}</h3>
+              <p className="ghost-description">{ghost.description}</p>
+              <div className="evidence-tags">
+                {getEvidenceNames(ghost.evidences).map((evidence, index) => (
+                  <span key={index} className="evidence-tag">
+                    {evidence}
+                  </span>
+                ))}
               </div>
             </div>
           );

@@ -6,13 +6,11 @@ import './EvidenceChecklist.css';
 interface EvidenceChecklistProps {
   evidenceState: EvidenceStateMap;
   onEvidenceChange: (evidenceId: string, state: EvidenceState) => void;
-  onReset: () => void;
 }
 
 const EvidenceChecklist: React.FC<EvidenceChecklistProps> = ({
   evidenceState,
-  onEvidenceChange,
-  onReset
+  onEvidenceChange
 }) => {
   const confirmedCount = Object.values(evidenceState).filter(state => state === 'confirmed').length;
   const ruledOutCount = Object.values(evidenceState).filter(state => state === 'ruled-out').length;
@@ -65,7 +63,16 @@ const EvidenceChecklist: React.FC<EvidenceChecklistProps> = ({
             <span className="count-item confirmed">확인됨: {confirmedCount}개</span>
             <span className="count-item ruled-out">제외됨: {ruledOutCount}개</span>
           </div>
-          <button className="reset-button" onClick={onReset}>
+          <button className="reset-button" onClick={() => {
+            const newState: EvidenceStateMap = {};
+            Object.keys(evidenceState).forEach(key => {
+              newState[key] = 'unknown';
+            });
+            // 모든 증거를 unknown으로 리셋
+            Object.keys(evidenceState).forEach(key => {
+              onEvidenceChange(key, 'unknown');
+            });
+          }}>
             🔄 리셋
           </button>
         </div>

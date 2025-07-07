@@ -5,144 +5,312 @@ export const GHOSTS: Ghost[] = [
     id: 'spirit',
     name: '스피릿',
     evidences: ['emf5', 'spiritBox', 'ghostWriting'],
-    description: '가장 기본적인 유령'
+    description: '가장 기본적인 유령',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초 (향초 사용 시 180초)',
+    roamingRange: '10m',
+    strengths: ['정화 향초에 맞으면 180초간 사냥 불가'],
+    weaknesses: ['정화 향초에 매우 약함'],
+    specialNotes: ['가장 흔하지만 위험한 유령', '정화 향초에 맞으면 180초 동안 사냥을 할 수 없음']
   },
   {
     id: 'wraith',
     name: '레이스',
     evidences: ['emf5', 'spiritBox', 'dots'],
-    description: '소금을 밟지 못함'
+    description: '소금을 밟지 못함',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '무제한',
+    strengths: ['소금을 절대 밟지 않음', '층간 순간이동 가능'],
+    weaknesses: ['소금에 독성 반응'],
+    specialNotes: ['공중에 떠다니며 벽을 통과 가능', '소금 위를 지나갈 시 활동력 50 증가']
   },
   {
     id: 'phantom',
     name: '팬텀',
     evidences: ['spiritBox', 'dots', 'uv'],
-    description: '실체화 시 정신력 감소'
+    description: '실체화 시 정신력 감소',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '무제한',
+    strengths: ['실체화 시 주변 플레이어 정신력 감소', '사냥 중 깜빡임 간격이 김'],
+    weaknesses: ['사진을 찍으면 일시적으로 사라짐'],
+    specialNotes: ['사냥 시 1~2초마다 나타났다 사라짐', '사진 촬영 시 모습이 사라지지만 이벤트는 지속']
   },
   {
     id: 'poltergeist',
     name: '폴터가이스트',
     evidences: ['spiritBox', 'uv', 'ghostWriting'],
-    description: '물건을 강하게 던짐'
+    description: '물건을 강하게 던짐',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['많은 양의 물체를 한번에 던질 수 있음'],
+    weaknesses: ['주변에 사물이 없으면 공격성이 저하됨'],
+    specialNotes: ['던진 물건 1개마다 주변 플레이어의 정신력 2% 감소']
   },
   {
     id: 'banshee',
     name: '밴시',
     evidences: ['uv', 'ghostOrb', 'dots'],
-    description: '특정 목표물만 공격'
+    description: '특정 목표물만 공격',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '무제한',
+    strengths: ['특정 목표물만 공격', '특유의 위스퍼링'],
+    weaknesses: ['크로스에 약함'],
+    specialNotes: ['다인플 시 목표물만 쫓아감', '특유한 위스퍼링 소리를 냄']
   },
   {
     id: 'jinn',
     name: '진',
     evidences: ['emf5', 'uv', 'freezing'],
-    description: '퓨즈를 내릴 수 없음'
+    description: '퓨즈를 내릴 수 없음',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['퓨즈가 켜져 있을 때 빠름'],
+    weaknesses: ['퓨즈를 내리면 약해짐'],
+    specialNotes: ['퓨즈가 켜져 있을 때 이동 속도 증가', '퓨즈를 내리면 활동력 감소']
   },
   {
     id: 'mare',
     name: '메어',
     evidences: ['spiritBox', 'ghostOrb', 'ghostWriting'],
-    description: '어두운 곳에서 더 공격적'
+    description: '어두운 곳에서 더 공격적',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['어두운 곳에서 더 공격적'],
+    weaknesses: ['빛을 켜면 약해짐'],
+    specialNotes: ['어두운 곳에서 활동력 증가', '빛을 켜면 활동력 감소']
   },
   {
     id: 'revenant',
     name: '레버넌트',
     evidences: ['ghostOrb', 'ghostWriting', 'freezing'],
-    description: '플레이어를 보면 매우 빠름'
+    description: '플레이어를 보면 매우 빠름',
+    speed: '1.7m/s (플레이어를 보면 3.0m/s)',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['플레이어를 보면 매우 빠름'],
+    weaknesses: ['플레이어를 보지 못하면 매우 느림'],
+    specialNotes: ['플레이어를 마주할 시 급가속', '플레이어를 보지 못하면 매우 느려짐']
   },
   {
     id: 'shade',
     name: '셰이드',
     evidences: ['emf5', 'ghostWriting', 'freezing'],
-    description: '플레이어가 있을 때 활동 감소'
+    description: '플레이어가 있을 때 활동 감소',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['플레이어가 있을 때 활동 감소'],
+    weaknesses: ['플레이어가 없을 때만 사냥 시도'],
+    specialNotes: ['플레이어가 있을 때는 거의 활동하지 않음', '플레이어가 없을 때만 사냥을 시도함']
   },
   {
     id: 'demon',
     name: '데몬',
     evidences: ['uv', 'ghostWriting', 'freezing'],
-    description: '정화 향초에 약함'
+    description: '정화 향초에 약함',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['정화 향초에 맞아도 사냥 가능'],
+    weaknesses: ['정화 향초에 약함'],
+    specialNotes: ['정화 향초에 맞아도 사냥을 시도할 수 있음', '정화 향초에 맞으면 쿨타임이 짧아짐']
   },
   {
     id: 'yurei',
     name: '유레이',
     evidences: ['ghostOrb', 'freezing', 'dots'],
-    description: '문을 닫아 정신력 감소'
+    description: '문을 닫아 정신력 감소',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['문을 닫아 정신력 감소'],
+    weaknesses: ['향초에 약함'],
+    specialNotes: ['문을 닫으면 주변 플레이어의 정신력 감소', '향초를 사용하면 활동력 감소']
   },
   {
     id: 'oni',
     name: '오니',
     evidences: ['emf5', 'freezing', 'dots'],
-    description: '활동적일 때 더 공격적'
+    description: '활동적일 때 더 공격적',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['활동적일 때 더 공격적'],
+    weaknesses: ['활동이 적을 때 약함'],
+    specialNotes: ['활동적일 때 더 공격적', '사람이 방에 있을 때 활동력 30 증가']
   },
   {
     id: 'yokai',
     name: '요괴',
     evidences: ['spiritBox', 'ghostOrb', 'dots'],
-    description: '소음에 민감'
+    description: '소음에 민감',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['소음에 민감'],
+    weaknesses: ['소음에 방해받음'],
+    specialNotes: ['소음이 있을 때 활동력 감소', '조용할 때 더 활동적']
   },
   {
     id: 'hantu',
     name: '한투',
     evidences: ['uv', 'ghostOrb', 'freezing'],
-    description: '고정 증거: 서늘함'
+    description: '고정 증거: 서늘함',
+    speed: '1.7m/s (온도에 따라 변함)',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['온도에 따라 속도가 달라짐'],
+    weaknesses: ['온도에 따라 속도가 달라짐'],
+    specialNotes: ['유령방에서 빠름', '가속도가 없음', '온도가 낮을수록 빠름']
   },
   {
     id: 'goryo',
     name: '고료',
     evidences: ['emf5', 'uv', 'dots'],
-    description: '고정 증거: 도트 프로젝터'
+    description: '고정 증거: 도트 프로젝터',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['도트 프로젝터를 통과한 상태에서만 카메라로 볼 수 있음'],
+    weaknesses: ['육안으로는 도트를 볼 수 없음'],
+    specialNotes: ['유령방에 사람이 없을 때만 도트 프로젝터 실루엣 확인 가능', 'CCTV와 비디오 카메라로만 볼 수 있음']
   },
   {
     id: 'myling',
     name: '마일링',
     evidences: ['emf5', 'uv', 'ghostWriting'],
-    description: '발소리가 들리지 않음'
+    description: '발소리가 들리지 않음',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['발소리가 들리지 않음'],
+    weaknesses: ['발소리가 들리지 않음'],
+    specialNotes: ['사냥 중 발소리가 들리지 않음', '물건을 건드리는 소리는 남']
   },
   {
     id: 'onryo',
     name: '원령',
     evidences: ['spiritBox', 'ghostOrb', 'freezing'],
-    description: '양초를 끄면 공격적'
+    description: '양초를 끄면 공격적',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['양초를 끄면 사냥 시도'],
+    weaknesses: ['양초에 약함'],
+    specialNotes: ['양초를 끄면 즉시 사냥을 시도할 수 있음', '양초가 있을 때는 활동력 감소']
   },
   {
     id: 'twins',
     name: '트윈스',
     evidences: ['emf5', 'spiritBox', 'freezing'],
-    description: '2연속 상호작용'
+    description: '2연속 상호작용',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['2연속 상호작용'],
+    weaknesses: ['2연속 상호작용'],
+    specialNotes: ['본체는 조금 느리고 분신은 조금 빠름', '사냥 때마다 본체와 분신이 바뀜']
   },
   {
     id: 'raiju',
     name: '라이주',
     evidences: ['emf5', 'ghostOrb', 'dots'],
-    description: '전자기기 근처에서 빠름'
+    description: '전자기기 근처에서 빠름',
+    speed: '1.7m/s (전자기기 근처에서 2.5m/s)',
+    sanityThreshold: '50% (전자기기 근처에서 65%)',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['전자기기 근처에서 빠름'],
+    weaknesses: ['전자기기를 고장 내는 범위가 15m'],
+    specialNotes: ['전자기기 근처에서 이동 속도 2.5m/s', '전자기기 근처에서 사냥 임계점 65%']
   },
   {
     id: 'obake',
     name: '오바케',
     evidences: ['emf5', 'uv', 'ghostOrb'],
-    description: '고정 증거: UV 자외선'
-  },
-  {
-    id: 'mimic',
-    name: '미믹',
-    evidences: ['spiritBox', 'uv', 'freezing'],
-    description: '다른 유령을 모방, 고스트 오브는 약점'
+    description: '고정 증거: UV 자외선',
+    speed: '1.7m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['상호작용 시 흔적을 거의 남기지 않음'],
+    weaknesses: ['때때로 특이한 증거를 남김'],
+    specialNotes: ['손자국 지속시간이 짧음', '손가락 6개짜리 손자국을 남길 수 있음', '사냥 중 다른 유령 모델로 변신']
   },
   {
     id: 'moroi',
     name: '모로이',
     evidences: ['spiritBox', 'ghostWriting', 'freezing'],
-    description: '고정 증거: 주파수 측정기'
+    description: '고정 증거: 주파수 측정기',
+    speed: '1.4m/s~2.25m/s',
+    sanityThreshold: '50%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['희생자들이 약해질수록 더욱 강력해짐'],
+    weaknesses: ['후각이 굉장히 예민하여 더 오랫동안 힘을 잃음'],
+    specialNotes: ['주파수 측정기 대답을 들은 플레이어의 정신력이 지속적으로 감소', '정화 향초에 맞으면 7.5초 유예시간']
   },
   {
     id: 'deogen',
     name: '데오겐',
     evidences: ['spiritBox', 'ghostWriting', 'dots'],
-    description: '고정 증거: 주파수 측정기'
+    description: '고정 증거: 주파수 측정기',
+    speed: '3.0m/s~0.4m/s',
+    sanityThreshold: '40%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['생명체를 감지할 수 있음'],
+    weaknesses: ['자신의 형체를 드러내는 데 많은 에너지가 필요하고 매우 느리게 움직임'],
+    specialNotes: ['플레이어와 가까워질수록 이동 속도 감소', '1m 내에서 주파수 사용 시 33% 확률로 신음 소리', '절대 숨을 수 없음']
   },
   {
     id: 'thaye',
     name: '타예',
     evidences: ['ghostOrb', 'ghostWriting', 'dots'],
-    description: '시간이 지날수록 약해짐'
+    description: '시간이 지날수록 약해짐',
+    speed: '2.75m/s~1.0m/s',
+    sanityThreshold: '75%~15%',
+    huntCooldown: '25초',
+    roamingRange: '10m',
+    strengths: ['자신의 구역에서 더 활동적이고 방어적이며 민첩함'],
+    weaknesses: ['시간이 지남에 따라 점점 약해지고 느려지며 공격성이 저하됨'],
+    specialNotes: ['플레이어 주변에 머무를 경우 나이 스택 증가', '나이에 따라 모든 스탯 변동', '총 10번의 노화']
   },
+  {
+    id: 'mimic',
+    name: '미믹',
+    evidences: ['spiritBox', 'uv', 'freezing'],
+    description: '다른 유령을 모방, 고스트 오브는 약점',
+    speed: '?',
+    sanityThreshold: '?',
+    huntCooldown: '?',
+    roamingRange: '?',
+    strengths: ['다른 유령의 특징과 행동을 따라함'],
+    weaknesses: ['미믹 근처에서 고스트 오브가 관찰됨'],
+    specialNotes: ['유령방에서 고스트 오브가 반드시 발견됨', '게임 내 하나의 유령을 골라 그 유령의 모든 특징을 따라함', '사냥 중에는 다른 유령으로 바꿀 수 없음']
+  }
 ]; 

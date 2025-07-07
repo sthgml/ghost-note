@@ -9,8 +9,16 @@ export type EvidenceName = 'emf5' | 'spiritBox' | 'dots' | 'uv' | 'ghostOrb' | '
 export interface Ghost {
   id: string;
   name: string;
-  evidences: EvidenceName[]; 
+  evidences: string[]; // evidence IDs
   description?: string;
+  // 상세 정보 추가
+  speed?: string;
+  sanityThreshold?: string;
+  huntCooldown?: string;
+  roamingRange?: string;
+  specialNotes?: string[];
+  strengths?: string[];
+  weaknesses?: string[];
 }
 
 export type EvidenceState = 'confirmed' | 'ruled-out' | 'unknown';
