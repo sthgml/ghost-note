@@ -76,14 +76,14 @@
 }
 
 .ghost-card.selected {
-  border-color: #4a7c4a;
-  background: #2d4a2d;
-  box-shadow: 0 0 0 2px #4a7c4a;
+  border-color: #d5d5d5;
+  background: #4c4c4c;
+  box-shadow: 0 0 0 2px #898989;
 }
 
 .ghost-card.selected:hover {
-  border-color: #5a8c5a;
-  background: #3d5a3d;
+  border-color: #d5d5d5;
+  background: #4c4c4c;
 }
 
 .ghost-card.ruled-out {
