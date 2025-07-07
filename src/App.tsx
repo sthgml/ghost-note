@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
 import './App.css';
 import EvidenceChecklist from './components/EvidenceChecklist';
+import OtherChecklist from './components/OtherChecklist';
 import GhostList from './components/GhostList';
 import GhostDetailPanel from './components/GhostDetailPanel';
-import { EvidenceStateMap, Ghost } from './types/ghost';
+import { EvidenceStateMap, ChecklistStateMap, Ghost } from './types/ghost';
 import { GHOSTS } from './data/ghosts';
 
 function App() {
   const [evidenceState, setEvidenceState] = useState<EvidenceStateMap>({});
+  const [checklistState, setChecklistState] = useState<ChecklistStateMap>({});
   const [selectedGhost, setSelectedGhost] = useState<Ghost | null>(null);
 
   const handleEvidenceChange = (evidenceId: string, state: 'confirmed' | 'ruled-out' | 'unknown') => {
     setEvidenceState(prev => ({
       ...prev,
       [evidenceId]: state
+    }));
+  };
+
+  const handleChecklistChange = (itemId: string, state: 'confirmed' | 'ruled-out' | 'unknown') => {
+    setChecklistState(prev => ({
+      ...prev,
+      [itemId]: state
     }));
   };
 
@@ -30,12 +39,17 @@ function App() {
             evidenceState={evidenceState} 
             onEvidenceChange={handleEvidenceChange} 
           />
+          <OtherChecklist
+            checklistState={checklistState}
+            onChecklistChange={handleChecklistChange}
+          />
         </div>
         
         <div className="center-panel">
           <GhostList 
             ghosts={GHOSTS}
             evidenceState={evidenceState}
+            checklistState={checklistState}
             selectedGhost={selectedGhost}
             onGhostSelect={setSelectedGhost}
           />

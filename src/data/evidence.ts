@@ -1,4 +1,4 @@
-import { Evidence } from '../types/ghost';
+import { Evidence, ChecklistItem } from '../types/ghost';
 
 export const EVIDENCES: Evidence[] = [
   {
@@ -36,7 +36,22 @@ export const EVIDENCES: Evidence[] = [
     name: '도트 프로젝터',
     description: '도트 프로젝터로 유령의 실루엣 확인'
   }
-]; 
+];
+
+export const CHECKLIST_ITEMS: ChecklistItem[] = [
+  {
+    id: 'roomChanged',
+    name: '유령 방 변경됨',
+    description: '유령이 다른 방으로 이동했는지 확인',
+    type: 'other'
+  },
+  {
+    id: 'lightsOff',
+    name: '불 끔',
+    description: '유령이 불을 끄는 행동을 했는지 확인',
+    type: 'other'
+  }
+];
 
 export const EVIDENCE_NAMES: { [key: string]: string } = {
   'emf5': 'EMF 5단계',
