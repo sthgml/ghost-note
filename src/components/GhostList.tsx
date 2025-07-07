@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Ghost } from '../types/ghost';
 import './GhostList.css';
 import { isPossibleGhosts, calculateGhostScore, getPossibilityTags } from '../utils/ghostLogic';
 import { EVIDENCE_NAMES } from '../data/evidence';
+
+type SortOption = 'score' | 'none';
 
 interface GhostListProps {
   ghosts: Ghost[];
@@ -19,6 +21,23 @@ const GhostList: React.FC<GhostListProps> = ({
   selectedGhost,
   onGhostSelect 
 }) => {
+  const [sortOption, setSortOption] = useState<SortOption>('none');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // 정렬된 유령 목록 계산
+  const sortedGhosts = useMemo(() => {
+    if (sortOption === 'none') {
+      return ghosts;
+    }
+    
+    return [...ghosts].sort((a, b) => {
+      const scoreA = calculateGhostScore(a, evidenceState, checklistState);
+      const scoreB = calculateGhostScore(b, evidenceState, checklistState);
+      
+      // 점수 순 정렬 (높은 점수가 위로)
+      return scoreB - scoreA;
+    });
+  }, [ghosts, evidenceState, checklistState, sortOption]);
 
   const handleGhostClick = (ghost: Ghost) => {
     if (selectedGhost?.id === ghost.id) {
@@ -26,6 +45,15 @@ const GhostList: React.FC<GhostListProps> = ({
     } else {
       onGhostSelect(ghost);
     }
+  };
+
+  const handleSortChange = (option: SortOption) => {
+    setSortOption(option);
+    setIsDropdownOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const renderPossibilityTags = (score: number) => {
@@ -45,11 +73,49 @@ const GhostList: React.FC<GhostListProps> = ({
     return tags;
   };
 
+  const getSortButtonText = () => {
+    switch (sortOption) {
+      case 'score':
+        return '점수 순';
+      case 'none':
+        return '정렬 없음';
+      default:
+        return '정렬';
+    }
+  };
+
   return (
     <div className="ghost-list">
-      <h2>유령 목록 ({ghosts.length})</h2>
+      <div className="ghost-list-header">
+        <h2>유령 목록 ({sortedGhosts.length})</h2>
+        <div className="sort-container">
+          <button 
+            className="sort-button"
+            onClick={toggleDropdown}
+          >
+            {getSortButtonText()}
+            <span className="dropdown-arrow">▼</span>
+          </button>
+          {isDropdownOpen && (
+            <div className="sort-dropdown">
+              <button 
+                className={`sort-option ${sortOption === 'score' ? 'active' : ''}`}
+                onClick={() => handleSortChange('score')}
+              >
+                점수 순
+              </button>
+              <button 
+                className={`sort-option ${sortOption === 'none' ? 'active' : ''}`}
+                onClick={() => handleSortChange('none')}
+              >
+                정렬 없음
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
       <div className="ghosts-grid">
-        {ghosts.map((ghost) => {
+        {sortedGhosts.map((ghost) => {
           const isSelected = selectedGhost?.id === ghost.id;
           const isRuledOut = ghost.evidences.some(evidence => 
             evidenceState[evidence] === 'ruled-out'
