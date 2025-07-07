@@ -2,6 +2,7 @@ import React from 'react';
 import { Ghost } from '../types/ghost';
 import './GhostList.css';
 import { isPossibleGhosts } from '../utils/ghostLogic';
+import { EVIDENCE_NAMES } from '../data/evidence';
 
 interface GhostListProps {
   ghosts: Ghost[];
@@ -16,18 +17,6 @@ const GhostList: React.FC<GhostListProps> = ({
   selectedGhost,
   onGhostSelect 
 }) => {
-  const getEvidenceNames = (evidenceIds: string[]) => {
-    const evidenceNames: { [key: string]: string } = {
-      'emf5': 'EMF 5단계',
-      'spiritBox': '주파수 측정기',
-      'uv': 'UV 자외선',
-      'ghostOrb': '고스트 오브',
-      'ghostWriting': '고스트 라이팅',
-      'freezing': '서늘함',
-      'dots': '도트 프로젝터'
-    };
-    return evidenceIds.map(id => evidenceNames[id] || id);
-  };
 
   const handleGhostClick = (ghost: Ghost) => {
     if (selectedGhost?.id === ghost.id) {
@@ -51,15 +40,21 @@ const GhostList: React.FC<GhostListProps> = ({
           return (
             <div
               key={ghost.id}
-              className={`ghost-card ${isSelected ? 'selected' : ''} ${isRuledOut || !isPossible ? 'ruled-out' : ''} `}
+              className={
+                `ghost-card ${
+                  isSelected ? 'selected' : ''
+                } ${
+                  isRuledOut || !isPossible ? 'ruled-out' : ''
+                }`
+              }
               onClick={() => handleGhostClick(ghost)}
             >
               <h3>{ghost.name}</h3>
               <p className="ghost-description">{ghost.description}</p>
               <div className="evidence-tags">
-                {getEvidenceNames(ghost.evidences).map((evidence, index) => (
-                  <span key={index} className="evidence-tag">
-                    {evidence}
+                {ghost.evidences.map((evidence, index) => (
+                  <span key={index} className={`evidence-tag ${evidenceState[evidence] ?? 'unknown'}`}>
+                    {EVIDENCE_NAMES[evidence]}
                   </span>
                 ))}
               </div>

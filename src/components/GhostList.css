@@ -88,7 +88,7 @@
 
 .ghost-card.ruled-out {
   opacity: 0.4;
-  filter: grayscale(1);
+  filter: grayscale(0.5);
 }
 
 .ghost-card.ruled-out:hover {
@@ -160,19 +160,26 @@
 }
 
 .evidence-tag {
-  background: #2d5a2d;
   color: #fff;
   padding: 3px 8px;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid #4a7c4a;
 }
 
-/* 선택된 유령 카드의 증거 태그 스타일 */
-.ghost-card.selected .evidence-tag {
-  background: #4a7c4a;
-  border-color: #5a8c5a;
+.evidence-tag.confirmed {
+  background: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.evidence-tag.ruled-out {
+  background: #ff4444;
+  border-color: #ff4444;
+}
+
+.evidence-tag.unknown {
+  background: #666;
+  border-color: #666;
 }
 
 /* 반응형 디자인 */
@@ -192,10 +199,6 @@
   
   .ghost-card h3 {
     font-size: 1.1rem;
-  }
-  
-  .evidence-tags {
-    gap: 4px;
   }
   
   .evidence-tag {

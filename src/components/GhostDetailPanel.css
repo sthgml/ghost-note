@@ -84,16 +84,6 @@
   gap: 8px;
 }
 
-.evidence-tag {
-  background: #2d5a2d;
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: 1px solid #4a7c4a;
-}
-
 .info-list {
   list-style: none;
   padding: 0;

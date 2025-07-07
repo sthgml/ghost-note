@@ -37,3 +37,13 @@ export const EVIDENCES: Evidence[] = [
     description: '도트 프로젝터로 유령의 실루엣 확인'
   }
 ]; 
+
+export const EVIDENCE_NAMES: { [key: string]: string } = {
+  'emf5': 'EMF 5단계',
+  'spiritBox': '주파수 측정기',
+  'uv': 'UV 자외선',
+  'ghostOrb': '고스트 오브',
+  'ghostWriting': '고스트 라이팅',
+  'freezing': '서늘함',
+  'dots': '도트 프로젝터'
+};
