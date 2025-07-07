@@ -1,6 +1,7 @@
 import React from 'react';
 import { Ghost, Evidence } from '../types/ghost';
-import { EVIDENCES } from '../data/evidence';
+import { EVIDENCE_NAMES, EVIDENCES } from '../data/evidence';
+import { USER_REVIEWS } from '../data/userReviews';
 import './GhostDetailPanel.css';
 
 interface GhostDetailPanelProps {
@@ -10,25 +11,25 @@ interface GhostDetailPanelProps {
 const GhostDetailPanel: React.FC<GhostDetailPanelProps> = ({ ghost }) => {
   if (!ghost) {
     return (
-      <div className="ghost-detail-panel empty">
-        <div className="empty-state">
-          <h3>유령 정보</h3>
-          <p>유령을 선택하면 자세한 정보를 볼 수 있습니다.</p>
+      <div className="ghost-detail-panel">
+        <div className="no-selection">
+          <h2>유령 상세 정보</h2>
+          <p>유령을 선택하면 상세 정보가 표시됩니다.</p>
         </div>
       </div>
     );
   }
 
-  const getEvidenceNames = (evidenceIds: string[]) => {
-    return evidenceIds.map(id => EVIDENCES.find((e: Evidence) => e.id === id)?.name || id);
-  };
+  const userReview = USER_REVIEWS[ghost.id];
 
   return (
     <div className="ghost-detail-panel">
-      <div className="ghost-header">
-        <h2>{ghost.name}</h2>
+      <h2>유령 상세 정보</h2>
+      
+      <div className="ghost-info">
+        <h3>{ghost.name}</h3>
         <p className="ghost-description">{ghost.description}</p>
-      </div>
+        </div>
 
       <div className="ghost-info-section">
         <h3>기본 정보</h3>
@@ -52,15 +53,15 @@ const GhostDetailPanel: React.FC<GhostDetailPanelProps> = ({ ghost }) => {
         </div>
       </div>
 
-      <div className="ghost-info-section">
+      <div className="info-section">
         <h3>증거</h3>
-        <div className="evidence-list">
-          {getEvidenceNames(ghost.evidences).map((evidence, index) => (
+          <div className="evidence-list">
+            {ghost.evidences.map((evidence, index) => (
             <span key={index} className="evidence-tag">
-              {evidence}
+              {EVIDENCE_NAMES[evidence]}
             </span>
           ))}
-        </div>
+          </div>
       </div>
 
       {ghost.strengths && ghost.strengths.length > 0 && (
@@ -93,6 +94,21 @@ const GhostDetailPanel: React.FC<GhostDetailPanelProps> = ({ ghost }) => {
               <li key={index}>{note}</li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {userReview && (
+        <div className="ghost-info-section">
+          <h3>유저 후기</h3>
+          <div className="user-review-warning">
+            <span className="warning-icon">⚠️</span>
+            <span className="warning-text">정확하지 않은 정보가 포함되어 있을 수 있습니다.</span>
+          </div>
+          <div className="user-review-content">
+            {userReview.split('\n').map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
         </div>
       )}
     </div>
